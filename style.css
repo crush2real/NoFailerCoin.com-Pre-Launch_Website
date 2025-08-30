@@ -1,0 +1,115 @@
+:root{
+  --text:#ffffff;
+  --muted:#cfcfd6;
+  --gold1:#ffe394;
+  --gold2:#ffb84a;
+  --goldGlow:#ffcc66;
+  --card:#151515;
+  --cardEdge:#2b2b2f;
+  --pillBg:#1a1a1e;
+  --border:#2a2a2f;
+}
+*{box-sizing:border-box}
+html,body{
+  height:100%; margin:0; color:var(--text);
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:
+    radial-gradient(140% 120% at 10% 0%, #0f0f12 0%, transparent 55%),
+    radial-gradient(140% 120% at 90% 0%, #151517 0%, transparent 55%),
+    linear-gradient(180deg, #0b0b0c, #101013 60%);
+}
+a{color:inherit;text-decoration:none}
+.page{max-width:1120px;margin:0 auto;padding:20px}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;
+  justify-content:space-between;background:rgba(0,0,0,.45);backdrop-filter:blur(8px);
+  border:1px solid var(--border);padding:10px 16px;border-radius:12px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand-logo{width:40px;height:40px;border-radius:999px;object-fit:cover;background:#111}
+.brand-text small{color:var(--muted);display:block;margin-top:2px}
+.links{display:flex;gap:16px;align-items:center}
+.links a{color:var(--muted);font-size:14px}
+.links a:hover{color:var(--text)}
+.links .cta{padding:8px 12px;background:var(--goldGlow);color:#1a1408;border-radius:10px;font-weight:700}
+
+/* Hero */
+.hero{margin-top:16px;display:grid;grid-template-columns:320px 1fr;gap:20px;padding:18px;
+  border:1px solid var(--cardEdge);border-radius:16px;background:
+  radial-gradient(120% 120% at 20% 10%, var(--gold1), transparent 60%),
+  radial-gradient(120% 120% at 80% 0%, var(--gold2), transparent 55%),
+  #141416}
+.hero-art img{width:100%;height:320px;object-fit:contain;border-radius:16px;background:#0f0f12;padding:8px}
+.hero-copy h1{margin:0 0 8px;font-size:34px;line-height:1.1}
+.hero-copy h1 span{display:block;background:linear-gradient(90deg,var(--gold1),var(--gold2));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy p{color:var(--muted);margin:0 0 10px}
+.cta-row{display:flex;gap:10px;margin-top:10px}
+.btn{padding:10px 14px;border:1px solid var(--border);border-radius:12px;background:#141417}
+.btn.primary{background:var(--goldGlow);color:#1a1408;font-weight:800;border-color:#eab30844}
+.status-card{margin-top:12px;padding:12px;border:1px solid var(--border);border-radius:12px;background:#121215}
+
+/* Sections */
+section{margin-top:22px}
+.grid{display:grid;gap:16px}
+.grid.one{grid-template-columns:1fr}
+.grid.two{grid-template-columns:repeat(2,1fr)}
+.grid.three{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--cardEdge);border-radius:16px;padding:16px}
+.callout{border:1px solid #3a2e14;background:linear-gradient(180deg,#17130b,#14110a)}
+.list{list-style:none;padding:0;margin:12px 0}
+.list li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed #2f3036}
+.list li:last-child{border-bottom:none}
+.bullets{margin:8px 0 0 18px;color:var(--muted)}
+.pill{display:inline-block;padding:8px 12px;border-radius:999px;background:var(--pillBg);border:1px solid var(--border);color:#e7d3a1}
+.hint{color:var(--muted);font-size:13px}
+
+/* Footer */
+.footer{text-align:center;color:var(--muted);padding:22px 0 12px}
+.copyright{margin-top:6px;color:#9c9ca3}
+
+@media (max-width:820px){
+  .hero{grid-template-columns:1fr}
+  .links{display:none}
+}
+/* --- Tokenomics layout tweaks --- */
+#tokenomics.grid.two {
+  align-items: stretch;               /* make both cards same height */
+}
+
+/* same height feeling for both cards without forcing exact px */
+#tokenomics .card { min-height: 420px; }
+
+/* Chart card: center the heading and donut */
+.chart-card { display: flex; flex-direction: column; }
+.chart-card h3 { text-align: center; margin-bottom: 12px; }
+
+/* Wrap centers the SVG */
+.chart-card .donut-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+/* Size the donut so it visually matches the left card */
+.chart-card .donut {
+  width: 280px;   /* was visually a bit small; adjust here only */
+  height: 280px;
+  max-width: 100%;
+}
+
+/* Center the inner label block over the donut (if present) */
+.chart-card .center-label {
+  position: absolute;                 /* only if you’re using the label div */
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+/* Slightly tighten on smaller screens */
+@media (max-width: 1024px) {
+  #tokenomics .card { min-height: 360px; }
+  .chart-card .donut { width: 240px; height: 240px; }
+}
